@@ -165,5 +165,4 @@ abstract class AbstractView implements ViewInterface
         $this->$variable = $view->render();
         return $this;
     }
-
 }

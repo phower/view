@@ -13,10 +13,10 @@ namespace Phower\View\Exception;
 
 /**
  * ExceptionInterface
- * 
+ *
  * @author Pedro Ferreira <pedro@phower.com>
  */
 interface ExceptionInterface
 {
-    
+
 }

@@ -91,7 +91,7 @@ class TemplateRenderer implements TemplateRendererInterface
 
     /**
      * Add new path.
-     * 
+     *
      * @param string $path
      * @return $this
      */
@@ -167,5 +167,4 @@ class TemplateRenderer implements TemplateRendererInterface
         extract($variables);
         include $template;
     }
-
 }

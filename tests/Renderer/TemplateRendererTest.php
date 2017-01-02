@@ -33,7 +33,7 @@ class TemplateRendererTest extends \PHPUnit_Framework_TestCase
     {
         $renderer = new \Phower\View\Renderer\TemplateRenderer('template.php');
         $this->assertEquals([], $renderer->getPaths());
-        
+
         $paths = [__DIR__];
         $renderer->setPaths($paths);
         $this->assertEquals($paths, $renderer->getPaths());
@@ -68,5 +68,4 @@ class TemplateRendererTest extends \PHPUnit_Framework_TestCase
         $renderer = new \Phower\View\Renderer\TemplateRenderer('template.php');
         $renderer->render();
     }
-
 }

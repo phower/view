@@ -12,30 +12,27 @@
 namespace PhowerTest\View;
 
 /**
- * Template view test case.
+ * JSON view test case.
  *
  * @author Pedro Ferreira <pedro@phower.com>
  */
-class TemplateViewTest extends \PHPUnit_Framework_TestCase
+class JsonViewTest extends \PHPUnit_Framework_TestCase
 {
 
-    public function testRequiresTemplateRenderer()
+    public function testRequiresJsonRenderer()
     {
-        $renderer = new \Phower\View\Renderer\TemplateRenderer('template.php', [__DIR__]);
-        $view = new \Phower\View\TemplateView(['name' => 'Pedro']);
-        $this->assertNull($view->getRenderer());
+        $view = new \Phower\View\JsonView();
+        $this->assertInstanceOf(\Phower\View\Renderer\JsonRendererInterface::class, $view->getRenderer());
 
+        $renderer = new \Phower\View\Renderer\JsonRenderer();
         $view->setRenderer($renderer);
         $this->assertSame($renderer, $view->getRenderer());
-
-        $variables = $view->getVariables();
-        $this->assertEquals($renderer->render($variables), $view->render());
     }
 
     public function testSetRendererRaiseExceptionOnBadRendererType()
     {
         $this->setExpectedException(\Phower\View\Exception\InvalidArgumentException::class);
-        $view = new \Phower\View\TemplateView();
+        $view = new \Phower\View\JsonView();
         $renderer = $this->getMockBuilder(\Phower\View\Renderer\RendererInterface::class)->getMock();
         $view->setRenderer($renderer);
     }

@@ -55,5 +55,4 @@ class AbstractViewTest extends \PHPUnit_Framework_TestCase
         $view->setRenderer($renderer);
         $this->assertSame($renderer, $view->getRenderer());
     }
-
 }

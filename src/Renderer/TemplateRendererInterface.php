@@ -53,7 +53,7 @@ interface TemplateRendererInterface extends RendererInterface
 
     /**
      * Add new path.
-     * 
+     *
      * @param string $path
      * @return \Phower\View\Renderer\TemplateRendererInterface
      */

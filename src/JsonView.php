@@ -14,21 +14,25 @@ namespace Phower\View;
 /**
  * TemplateView
  *
- * Implements methods to render variables with a template.
+ * Implements methods to render variables as JSON.
  *
  * @author Pedro Ferreira <pedro@phower.com>
  */
-class TemplateView extends AbstractView implements ViewInterface
+class JsonView extends AbstractView implements ViewInterface
 {
 
     /**
      * Create new view instance.
      *
      * @param array $variables
-     * @param Renderer\TemplateRendererInterface $renderer
+     * @param Renderer\JsonRendererInterface $renderer
      */
-    public function __construct(array $variables = [], Renderer\TemplateRendererInterface $renderer = null)
+    public function __construct(array $variables = [], Renderer\JsonRendererInterface $renderer = null)
     {
+        if ($renderer === null) {
+            $renderer = new Renderer\JsonRenderer();
+        }
+
         parent::__construct($variables, $renderer);
     }
 
@@ -41,8 +45,8 @@ class TemplateView extends AbstractView implements ViewInterface
      */
     public function setRenderer(Renderer\RendererInterface $renderer)
     {
-        if (!$renderer instanceof Renderer\TemplateRendererInterface) {
-            $message = sprintf('Instances of "%s" always require renderer to implement "%s".', __CLASS__, Renderer\TemplateRendererInterface::class);
+        if (!$renderer instanceof Renderer\JsonRendererInterface) {
+            $message = sprintf('Instances of "%s" always require renderer to implement "%s".', __CLASS__, Renderer\JsonTemplateRendererInterface::class);
             throw new Exception\InvalidArgumentException($message);
         }
 
