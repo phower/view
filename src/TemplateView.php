@@ -25,9 +25,9 @@ class TemplateView extends AbstractView implements ViewInterface
      * Create new view instance.
      *
      * @param array $variables
-     * @param \Phower\View\TemplateRendererInterface $renderer
+     * @param Renderer\TemplateRendererInterface $renderer
      */
-    public function __construct(array $variables = [], TemplateRendererInterface $renderer = null)
+    public function __construct(array $variables = [], Renderer\TemplateRendererInterface $renderer = null)
     {
         parent::__construct($variables, $renderer);
     }
@@ -35,14 +35,14 @@ class TemplateView extends AbstractView implements ViewInterface
     /**
      * Set renderer.
      *
-     * @param \Phower\View\RendererInterface $renderer
+     * @param Renderer\RendererInterface $renderer
      * @return $this
      * @throws Exception\InvalidArgumentException
      */
-    public function setRenderer(RendererInterface $renderer)
+    public function setRenderer(Renderer\RendererInterface $renderer)
     {
-        if (!$renderer instanceof TemplateRenderer) {
-            $message = sprintf('Instances of "%s" always require renderer to implement "%s".', __CLASS__, TemplateRendererInterface::class);
+        if (!$renderer instanceof Renderer\TemplateRenderer) {
+            $message = sprintf('Instances of "%s" always require renderer to implement "%s".', __CLASS__, Renderer\TemplateRendererInterface::class);
             throw new Exception\InvalidArgumentException($message);
         }
 

@@ -20,7 +20,7 @@ class TemplateViewTest extends \PHPUnit_Framework_TestCase
 {
     public function testRequiresTemplateRenderer()
     {
-        $renderer = new \Phower\View\TemplateRenderer('template.php', [__DIR__]);
+        $renderer = new \Phower\View\Renderer\TemplateRenderer('template.php', [__DIR__]);
         $view = new \Phower\View\TemplateView(['name' => 'Pedro']);
         $this->assertNull($view->getRenderer());
         

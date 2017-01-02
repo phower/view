@@ -9,7 +9,9 @@
  * @license https://opensource.org/licenses/MIT MIT
  */
 
-namespace Phower\View;
+namespace Phower\View\Renderer;
+
+use Phower\View\Exception\RuntimeException;
 
 /**
  * Renderer
@@ -128,15 +130,15 @@ class TemplateRenderer implements TemplateRendererInterface
      * Render template with current variables.
      *
      * @return string
-     * @throws Exception\RuntimeException
+     * @throws RuntimeException
      * @throws \Throwable
      * @throws \Exception
      */
-    public function render(array $variables)
+    public function render(array $variables = [])
     {
         if (!$template = $this->resolve()) {
             $message = sprintf('Unable to resolve file "%s" in any of given paths.', $this->getTemplate());
-            throw new Exception\RuntimeException($message);
+            throw new RuntimeException($message);
         }
 
         try {

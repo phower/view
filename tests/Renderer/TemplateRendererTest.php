@@ -9,7 +9,7 @@
  * @license https://opensource.org/licenses/MIT MIT
  */
 
-namespace PhowerTest\View;
+namespace PhowerTest\View\Renderer;
 
 /**
  * Template renderer test case.
@@ -21,7 +21,7 @@ class TemplateRendererTest extends \PHPUnit_Framework_TestCase
 
     public function testSetAndGetTemplate()
     {
-        $renderer = new \Phower\View\TemplateRenderer('template.php');
+        $renderer = new \Phower\View\Renderer\TemplateRenderer('template.php');
         $this->assertEquals('template.php', $renderer->getTemplate());
 
         $template = 'path/to/another/template.php';
@@ -31,7 +31,7 @@ class TemplateRendererTest extends \PHPUnit_Framework_TestCase
 
     public function testSetAndGetPaths()
     {
-        $renderer = new \Phower\View\TemplateRenderer('template.php');
+        $renderer = new \Phower\View\Renderer\TemplateRenderer('template.php');
         $this->assertEquals([], $renderer->getPaths());
         
         $paths = [__DIR__];
@@ -45,18 +45,28 @@ class TemplateRendererTest extends \PHPUnit_Framework_TestCase
 
     public function testResolve()
     {
-        $renderer = new \Phower\View\TemplateRenderer('template.php');
+        $renderer = new \Phower\View\Renderer\TemplateRenderer('template.php');
         $this->assertNull($renderer->resolve());
 
-        $renderer->addPath(__DIR__);
-        $this->assertEquals(__DIR__ . '/template.php', $renderer->resolve());
+        $renderer->addPath(__DIR__ . '/..');
+        $this->assertEquals(__DIR__ . '/../template.php', $renderer->resolve());
+
+        $renderer = new \Phower\View\Renderer\TemplateRenderer(__DIR__ . '/../template.php');
+        $this->assertEquals(__DIR__ . '/../template.php', $renderer->resolve());
     }
 
     public function testRender()
     {
-        $renderer = new \Phower\View\TemplateRenderer('template.php', [__DIR__]);
-        $expected = str_replace('<?= $name ?>', 'Pedro', file_get_contents(__DIR__ . '/template.php'));
+        $renderer = new \Phower\View\Renderer\TemplateRenderer('template.php', [__DIR__ . '/..']);
+        $expected = str_replace('<?= $name ?>', 'Pedro', file_get_contents(__DIR__ . '/../template.php'));
         $this->assertEquals($expected, $renderer->render(['name' => 'Pedro']));
+    }
+
+    public function testRenderRaiseExceptionOnTemplateNotFound()
+    {
+        $this->setExpectedException(\Phower\View\Exception\RuntimeException::class);
+        $renderer = new \Phower\View\Renderer\TemplateRenderer('template.php');
+        $renderer->render();
     }
 
 }

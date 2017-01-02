@@ -9,7 +9,7 @@
  * @license https://opensource.org/licenses/MIT MIT
  */
 
-namespace Phower\View;
+namespace Phower\View\Renderer;
 
 /**
  * Renderer interface
@@ -25,7 +25,7 @@ interface TemplateRendererInterface extends RendererInterface
      * Set template name.
      *
      * @param string $template
-     * @return $this
+     * @return \Phower\View\Renderer\TemplateRendererInterface
      */
     public function setTemplate($template);
 
@@ -40,7 +40,7 @@ interface TemplateRendererInterface extends RendererInterface
      * Set array of paths where templates can be found.
      *
      * @param array $paths
-     * @return $this
+     * @return \Phower\View\Renderer\TemplateRendererInterface
      */
     public function setPaths(array $paths);
 
@@ -55,7 +55,7 @@ interface TemplateRendererInterface extends RendererInterface
      * Add new path.
      * 
      * @param string $path
-     * @return $this
+     * @return \Phower\View\Renderer\TemplateRendererInterface
      */
     public function addPath($path);
 

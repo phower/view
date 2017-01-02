@@ -27,7 +27,7 @@ abstract class AbstractView implements ViewInterface
     private $variables;
 
     /**
-     * @var RendererInterface
+     * @var Renderer\RendererInterface
      */
     private $renderer;
 
@@ -35,9 +35,9 @@ abstract class AbstractView implements ViewInterface
      * Create a new view instance.
      *
      * @param array $variables
-     * @param RendererInterface $renderer
+     * @param Renderer\RendererInterface $renderer
      */
-    public function __construct(array $variables = [], RendererInterface $renderer = null)
+    public function __construct(array $variables = [], Renderer\RendererInterface $renderer = null)
     {
         $this->variables = $variables;
         $this->renderer = $renderer;
@@ -123,10 +123,10 @@ abstract class AbstractView implements ViewInterface
     /**
      * Set the renderer.
      *
-     * @param \Phower\View\RendererInterface $renderer
+     * @param RendererInterface $renderer
      * @return $this
      */
-    public function setRenderer(RendererInterface $renderer)
+    public function setRenderer(Renderer\RendererInterface $renderer)
     {
         $this->renderer = $renderer;
         return $this;
@@ -135,7 +135,7 @@ abstract class AbstractView implements ViewInterface
     /**
      * Get the renderer.
      *
-     * @return RendererInterface
+     * @return Renderer\RendererInterface
      */
     public function getRenderer()
     {

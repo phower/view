@@ -11,6 +11,8 @@
 
 namespace Phower\View;
 
+use Phower\View\Renderer\RendererInterface;
+
 /**
  * View interface
  *
@@ -39,7 +41,7 @@ interface ViewInterface
     /**
      * Set renderer instance.
      *
-     * @param \Phower\View\RendererInterface $renderer
+     * @param RendererInterface $renderer
      * @return $this
      */
     public function setRenderer(RendererInterface $renderer);

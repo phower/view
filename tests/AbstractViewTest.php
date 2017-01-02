@@ -50,7 +50,7 @@ class AbstractViewTest extends \PHPUnit_Framework_TestCase
     public function testSetAndGetRenderer()
     {
         $view = $this->getMockForAbstractClass(\Phower\View\AbstractView::class);
-        $renderer = $this->getMockBuilder(\Phower\View\RendererInterface::class)
+        $renderer = $this->getMockBuilder(\Phower\View\Renderer\RendererInterface::class)
                         ->disableOriginalConstructor()->getMock();
         $view->setRenderer($renderer);
         $this->assertSame($renderer, $view->getRenderer());

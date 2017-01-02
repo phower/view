@@ -9,7 +9,7 @@
  * @license https://opensource.org/licenses/MIT MIT
  */
 
-namespace Phower\View;
+namespace Phower\View\Renderer;
 
 /**
  * Renderer interface
@@ -26,9 +26,9 @@ interface RendererInterface
      *
      * @param array $variables
      * @return string
-     * @throws Exception\RuntimeException
+     * @throws \Phower\View\Exception\RuntimeException
      * @throws \Throwable
      * @throws \Exception
      */
-    public function render(array $variables);
+    public function render(array $variables = []);
 }
