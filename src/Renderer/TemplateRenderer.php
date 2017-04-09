@@ -145,10 +145,10 @@ class TemplateRenderer implements TemplateRendererInterface
             ob_start();
             $this->output($template, $variables);
             $output = ob_get_clean();
-        } catch (\Throwable $e) { // PHP 7+
+        } catch (\Exception $e) { // PHP < 7
             ob_end_clean();
             throw $e;
-        } catch (\Exception $e) { // PHP < 7
+        } catch (\Throwable $e) { // PHP 7+
             ob_end_clean();
             throw $e;
         }

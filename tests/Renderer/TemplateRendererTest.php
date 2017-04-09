@@ -68,4 +68,18 @@ class TemplateRendererTest extends \PHPUnit_Framework_TestCase
         $renderer = new \Phower\View\Renderer\TemplateRenderer('template.php');
         $renderer->render();
     }
+
+    public function testRenderRaiseThrowable()
+    {
+        $this->expectException(\Throwable::class);
+        $renderer = new \Phower\View\Renderer\TemplateRenderer(__DIR__ . '/throwable_template.php');
+        $renderer->render();
+    }
+
+    public function testRenderRaiseException()
+    {
+        $this->expectException(\Throwable::class);
+        $renderer = new \Phower\View\Renderer\TemplateRenderer(__DIR__ . '/exception_template.php');
+        $renderer->render();
+    }
 }
