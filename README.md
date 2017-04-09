@@ -23,7 +23,65 @@ composer require phower/view
 Usage
 =====
 
-TODO
+This package provides the essential tools for an application to output any kind of output 
+response supported by an optional list of variables which are rendered inside templates.
+
+Templates are plain PHP scripts which are rendered on a protected environment with all
+variables already available:
+
+```php
+<h1>Hello <?= $name ?>!</h1>
+```
+
+Assuming the template above is a file called `my_template.php` then we can use it to
+output a new set of variables:
+
+```php
+use Phower\View\TemplateView;
+
+$view = new TemplateView();
+$view->setTemplate('my_template.php');
+$view->setVariables(['name'] => 'Pedro');
+
+$view->render(); // outputs: <h1>Hello Pedro!</h1>
+```
+
+## Templates inside templates
+
+Many times we find useful to implement more than one layer of templating with high level ones
+outputing other templates.
+
+This can be achived by *capturing* the child template into a variable of the parent template:
+
+```php
+use Phower\View\TemplateView;
+
+$child = new TemplateView();
+$child->setTemplate('child_template.php');
+
+$parent = new TemplateView();
+$parent->setTemplate('parent_template.php');
+$parent->capture('child', $child);
+
+$parent->render();
+```
+
+## JSON views
+
+Others times we may wish to output a set of variables not using a template but just as a JSON plain
+representation:
+
+```php
+use Phower\View\JsonView;
+
+$view = new JsonView();
+$view->setVariables(['name'] => 'Pedro');
+
+$view->render(); // outputs: {"name":"Pedro"}
+```
+
+> Note that `JsonTemplate` is fully compatible with [PHP `json_encode`](http://php.net/manual/en/function.json-encode.php)
+> so that we can also set `options` and `depth` and use all the accepted values there on each instance of `JsonTemplate`.
 
 Running Tests
 -------------
