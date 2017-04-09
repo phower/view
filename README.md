@@ -46,7 +46,7 @@ $view->setVariables(['name'] => 'Pedro');
 $view->render(); // outputs: <h1>Hello Pedro!</h1>
 ```
 
-## Templates inside templates
+### Templates inside templates
 
 Many times we find useful to implement more than one layer of templating with high level ones
 outputing other templates.
@@ -66,9 +66,9 @@ $parent->capture('child', $child);
 $parent->render();
 ```
 
-## JSON views
+### JSON views
 
-Others times we may wish to output a set of variables not using a template but just as a JSON plain
+Other times we may wish to output a set of variables not using a template but just as a JSON plain
 representation:
 
 ```php
