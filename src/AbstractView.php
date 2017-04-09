@@ -11,6 +11,8 @@
 
 namespace Phower\View;
 
+use Phower\View\Renderer\RendererInterface;
+
 /**
  * AbstractView
  *
@@ -27,7 +29,7 @@ abstract class AbstractView implements ViewInterface
     private $variables;
 
     /**
-     * @var Renderer\RendererInterface
+     * @var RendererInterface
      */
     private $renderer;
 
@@ -35,9 +37,9 @@ abstract class AbstractView implements ViewInterface
      * Create a new view instance.
      *
      * @param array $variables
-     * @param Renderer\RendererInterface $renderer
+     * @param RendererInterface $renderer
      */
-    public function __construct(array $variables = [], Renderer\RendererInterface $renderer = null)
+    public function __construct(array $variables = [], RendererInterface $renderer = null)
     {
         $this->variables = $variables;
         $this->renderer = $renderer;
@@ -126,7 +128,7 @@ abstract class AbstractView implements ViewInterface
      * @param RendererInterface $renderer
      * @return $this
      */
-    public function setRenderer(Renderer\RendererInterface $renderer)
+    public function setRenderer(RendererInterface $renderer)
     {
         $this->renderer = $renderer;
         return $this;
@@ -135,7 +137,7 @@ abstract class AbstractView implements ViewInterface
     /**
      * Get the renderer.
      *
-     * @return Renderer\RendererInterface
+     * @return RendererInterface
      */
     public function getRenderer()
     {

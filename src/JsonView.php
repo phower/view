@@ -11,6 +11,10 @@
 
 namespace Phower\View;
 
+use Phower\View\Renderer\JsonRenderer;
+use Phower\View\Renderer\JsonRendererInterface;
+use Phower\View\Renderer\RendererInterface;
+
 /**
  * TemplateView
  *
@@ -25,12 +29,12 @@ class JsonView extends AbstractView implements ViewInterface
      * Create new view instance.
      *
      * @param array $variables
-     * @param Renderer\JsonRendererInterface $renderer
+     * @param JsonRendererInterface $renderer
      */
-    public function __construct(array $variables = [], Renderer\JsonRendererInterface $renderer = null)
+    public function __construct(array $variables = [], JsonRendererInterface $renderer = null)
     {
         if ($renderer === null) {
-            $renderer = new Renderer\JsonRenderer();
+            $renderer = new JsonRenderer();
         }
 
         parent::__construct($variables, $renderer);
@@ -43,10 +47,10 @@ class JsonView extends AbstractView implements ViewInterface
      * @return $this
      * @throws Exception\InvalidArgumentException
      */
-    public function setRenderer(Renderer\RendererInterface $renderer)
+    public function setRenderer(RendererInterface $renderer)
     {
-        if (!$renderer instanceof Renderer\JsonRendererInterface) {
-            $message = sprintf('Instances of "%s" always require renderer to implement "%s".', __CLASS__, Renderer\JsonTemplateRendererInterface::class);
+        if (!$renderer instanceof JsonRendererInterface) {
+            $message = sprintf('Instances of "%s" always require renderer to implement "%s".', __CLASS__, JsonTemplateRendererInterface::class);
             throw new Exception\InvalidArgumentException($message);
         }
 
